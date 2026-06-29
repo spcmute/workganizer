@@ -10,6 +10,7 @@ src-tauri/target/
 
 # Vite cache
 .vite/
+vite.config.*.timestamp-*.mjs
 
 # Environment files
 .env
