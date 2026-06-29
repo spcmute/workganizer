@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>workganizer — organizador de projetos com IA</title>
+<meta name="description" content="workganizer é um organizador de projetos pessoais desktop com geração de prompts via IA local ou remota." />
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <span class="brand">⬡ workganizer</span>
+      <nav class="nav-links">
+        <a href="#features">Funcionalidades</a>
+        <a href="#ai">Config de IA</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="https://github.com/spcmute/workganizer" class="btn btn-ghost">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="badge">Tauri · React · IA local ou remota</span>
+        <h1>Organiza as tuas ideias de projetos.<br/>Gera prompts prontos para o Claude.</h1>
+        <p class="hero-sub">
+          workganizer é uma app desktop leve para guardar, categorizar e pesquisar
+          ideias de projetos — com geração automática de prompts de implementação
+          via Ollama local ou qualquer provider de IA compatível com OpenAI.
+        </p>
+        <div class="hero-actions">
+          <a href="https://github.com/spcmute/workganizer/releases" class="btn btn-primary">Download</a>
+          <a href="https://github.com/spcmute/workganizer" class="btn btn-secondary">Ver código fonte</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <h2>Funcionalidades</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="card-icon">⬡</span>
+          <h3>Organização por categorias</h3>
+          <p>Separa os teus projetos em tabs — Web, Mobile, IA, ou as categorias que quiseres.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">⌕</span>
+          <h3>Pesquisa instantânea</h3>
+          <p>Filtra por nome, ideia ou tecnologias em tempo real, sem sair do teclado.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">✦</span>
+          <h3>Prompts gerados por IA</h3>
+          <p>Descreve o que queres construir e a IA gera nome, stack, ideia e prompt pronto a colar no Claude.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">⇅</span>
+          <h3>Importação em massa</h3>
+          <p>Importa dezenas de projetos de uma vez via ficheiro JSON.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">⧉</span>
+          <h3>Copiar com um clique</h3>
+          <p>Copia o prompt de qualquer projeto direto para o clipboard.</p>
+        </div>
+        <div class="card">
+          <span class="card-icon">⌬</span>
+          <h3>100% local</h3>
+          <p>Dados guardados em IndexedDB no teu dispositivo. Sem servidores, sem contas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" class="section section-alt">
+      <h2>Configuração de IA flexível</h2>
+      <p class="section-sub">Escolhe entre correr um modelo localmente ou ligar a um provider remoto — sem alterar código.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Modo Local (Ollama)</h3>
+          <p>Usa qualquer modelo instalado no <a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a> em <code>localhost:11434</code>. Privado, gratuito, sem internet.</p>
+          <pre><code>URL:    http://localhost:11434/v1/chat/completions
+Modelo: qwen3:8b</code></pre>
+        </div>
+        <div class="card">
+          <h3>Modo Remoto (OpenAI-compatible)</h3>
+          <p>Liga a OpenAI, OpenRouter ou qualquer endpoint compatível, com a tua própria API key.</p>
+          <pre><code>URL:    https://api.openai.com/v1/chat/completions
+Modelo: gpt-4o-mini
+Key:    sk-...</code></pre>
+        </div>
+      </div>
+      <p class="section-note">A configuração fica guardada em <code>%APPDATA%\workganizer\ai-config.json</code> — nunca é enviada para nenhum servidor além do provider escolhido.</p>
+    </section>
+
+    <section id="screenshots" class="section">
+      <h2>Interface</h2>
+      <p class="section-sub">Dark theme, grid de cards, tabs de categoria e modais simples.</p>
+      <div class="screenshot-frame">
+        <img src="screenshot.png" alt="Screenshot do workganizer mostrando o grid de projetos" />
+      </div>
+    </section>
+
+    <section class="section section-cta">
+      <h2>Pronto para organizar as tuas ideias?</h2>
+      <div class="hero-actions">
+        <a href="https://github.com/spcmute/workganizer/releases" class="btn btn-primary">Download</a>
+        <a href="https://github.com/spcmute/workganizer" class="btn btn-secondary">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>workganizer — MIT License — feito com Tauri + React</p>
+  </footer>
+
+</body>
+</html>
