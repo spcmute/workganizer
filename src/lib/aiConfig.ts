@@ -1,5 +1,6 @@
 import { appConfigDir } from "@tauri-apps/api/path";
 import { readTextFile, writeTextFile, mkdir, exists } from "@tauri-apps/plugin-fs";
+import { save } from "@tauri-apps/plugin-dialog";
 
 const CONFIG_FILE = "ai-config.json";
 
@@ -31,6 +32,17 @@ export async function loadAIConfig(): Promise<AIConfig> {
   } catch {
     return { ...DEFAULTS };
   }
+}
+
+export async function exportAIConfig(): Promise<boolean> {
+  const cfg = await loadAIConfig();
+  const path = await save({
+    defaultPath: "ai-config.json",
+    filters: [{ name: "JSON", extensions: ["json"] }],
+  });
+  if (!path) return false;
+  await writeTextFile(path, JSON.stringify(cfg, null, 2));
+  return true;
 }
 
 export async function saveAIConfig(cfg: AIConfig): Promise<void> {
