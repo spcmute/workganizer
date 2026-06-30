@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { db, deleteProject, type Project } from "./db/database";
+import { db, deleteProject, exportProjectsToJson, type Project } from "./db/database";
+import { save } from "@tauri-apps/plugin-dialog";
+import { writeTextFile } from "@tauri-apps/plugin-fs";
 import ImportModal from "./components/ImportModal";
 import CreateModal from "./components/CreateModal";
 import AIModal from "./components/AIModal";
@@ -31,6 +33,17 @@ export default function App() {
     return matchesCategory && matchesSearch;
   });
 
+  async function handleExport() {
+    const json = await exportProjectsToJson();
+    const filePath = await save({
+      filters: [{ name: "JSON", extensions: ["json"] }],
+      defaultPath: `workganizer-backup-${new Date().toISOString().slice(0, 10)}.json`,
+    });
+    if (filePath) {
+      await writeTextFile(filePath, json);
+    }
+  }
+
   function openEdit(p: Project) {
     setEditTarget(p);
     setModal("edit");
@@ -55,6 +68,9 @@ export default function App() {
           </button>
           <button className="btn btn-ghost" onClick={() => setModal("import")}>
             ↑ Importar JSON
+          </button>
+          <button className="btn btn-ghost" onClick={handleExport} disabled={projects.length === 0}>
+            ↓ Exportar JSON
           </button>
           <button className="btn btn-secondary" onClick={() => setModal("ai")}>
             ✦ Prompt IA

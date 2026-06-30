@@ -50,6 +50,11 @@ export async function deleteProject(id: number): Promise<void> {
   await db.projects.delete(id);
 }
 
+export async function exportProjectsToJson(): Promise<string> {
+  const projects = await getAllProjects();
+  return JSON.stringify({ projetos: projects }, null, 2);
+}
+
 export async function importProjects(
   projects: Omit<Project, "id" | "createdAt">[]
 ): Promise<void> {
